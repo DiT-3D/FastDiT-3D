@@ -1,1 +1,0 @@
-# FastDiT-3D

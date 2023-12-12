@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Fast Training of Diffusion Transformer with Extreme Masking for 3D Point Clouds Generation.">
+  <meta name="keywords" content="3D-Representation-Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fast Training of Diffusion Transformer with Extreme Masking for 3D Point Clouds Generation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Fast Training of Diffusion Transformer with Extreme Masking for 3D Point Clouds Generation</h1>
+          <div class="is-size-5 publication-authors">
+            </span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=6aYncPAAAAAJ&hl=en/">Shentong Mo</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="https://xieenze.github.io/">Enze Xie</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://yuewuhkust.github.io/">Yue Wu</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://lawrence-cj.github.io/">Junsong Chen</a><sup>2</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=eUtEs6YAAAAJ&hl=en/">Matthias Nießner</a><sup>3</sup>,</span>
+            <span class="author-block"><a href="https://scholar.google.com/citations?user=XboZC1AAAAAJ&hl=en/">Zhenguo Li</a><sup>2</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>MBZUAI,</span>
+            <span class="author-block"><sup>2</sup>Huawei Noah's Ark Lab,</span>
+            <span class="author-block"><sup>3</sup>TUM</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="assets/paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="assets/paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/DiT-3D/FastDiT-3D_Code"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted playsinline loop height="100%">
+        <source src="assets/demo.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        We propose FastDiT-3D, a novel masked diffusion transformer tailored for efficient 3D point cloud generation, 
+        which greatly reduces training costs.
+      </h2>
+    </div>
+    <div class="hero-body">
+      <img src="assets/framework.png"/>
+      <h2 class="subtitle has-text-centered">
+        Our FastDiT-3D utilizes the encoder blocks with 3D global attention and Mixture-of-Experts (MoE) FFN to take masked voxelized point clouds as input. 
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <hr>
+        <div class="content has-text-justified">
+          <p>
+            Diffusion Transformers have recently shown remarkable effectiveness in generating high-quality 3D point clouds. 
+            However, training voxel-based diffusion models for high-resolution 3D voxels remains prohibitively expensive due to the cubic complexity of attention operators, which arises from the additional dimension of voxels.
+            Motivated by the inherent redundancy of 3D compared to 2D, we propose FastDiT-3D, a novel masked diffusion transformer tailored for efficient 3D point cloud generation, which greatly reduces training costs.
+            Specifically, we draw inspiration from masked autoencoders to dynamically operate the denoising process on masked voxelized point clouds. We also propose a novel voxel-aware masking strategy to adaptively aggregate background/foreground information from voxelized point clouds. Our method achieves state-of-the-art performance with an extreme masking ratio of nearly 99%.
+            Moreover, to improve multi-category 3D generation, we introduce Mixture-of-Expert (MoE) in 3D diffusion model. Each category can learn a distinct diffusion path with different experts, relieving gradient conflict.
+            Experimental results on the ShapeNet dataset demonstrate that our method achieves state-of-the-art high-fidelity and diverse 3D point cloud generation performance. Our FastDiT-3D improves 1-Nearest Neighbor Accuracy and Coverage metrics when generating 128-resolution voxel point clouds, using only 6.5% of the original training cost.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Experiments</h2>
+        <hr>
+        <!-- <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div> -->
+        <div class="column has-text-centered">
+          <img src="assets/title_img.png" width="960" height="720"/>
+          <p>Comparison of the proposed FastDiT-3D with DiT-3D in terms of different voxel sizes on training costs (lower is better) and COV-CD performance (higher is better).</p>
+          <p>Our method achieves faster training while exhibiting superior performance.
+          </p>
+        </div>
+        <hr>
+        <div class="column has-text-centered">
+          <img src="assets/table_sota.png" width="960" height="720"/>
+          <p>Comparison results (%) on shape metrics of our FastDiT-3D and state-of-the-art models. 
+            Our method significantly outperforms previous baselines in terms of all classes.
+          </p>
+        </div>
+        <hr>
+        <div class="column has-text-centered">
+          <img src="assets/vis_sota.png"/>
+          <p>Qualitative comparisons with state-of-the-art methods for high-fidelity and diverse 3D point cloud generation. 
+            Our pro- posed FastDiT-3D produces better results for each category.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="hero-body">
+        <h2 class="title is-3">Experimental Analyses</h2>
+        <hr>
+        <div class="column has-text-centered">
+          <img src="assets/table_ablation.png" width="960" height="640"/>
+          <p>Analyses on ratio statistics, designed 3D components, and trade-off of non-occupied/occupied ratio. </p>
+        </div>
+        <hr>
+        <div class="column has-text-centered">
+          <img src="assets/table_decoder.png" width="960" height="640"/>
+          <p>Ablation studies on decoder depth, width, window sizes, and the number of window attention layers. </p>
+        </div>
+        <hr>
+        <div class="column has-text-centered">
+          <img src="assets/vis_moe.png" width="640" height="480"/>
+          <p>Qualitative visualizations of sampling paths across experts in Mixture-of-Experts encoder blocks for multi-class generation. </p>
+        </div>
+        <hr>
+        <div class="column has-text-centered">
+          <img src="assets/vis_voxel.png" width="960" height="640"/>
+          <p>Qualitative visualizations of generated point clouds on chair category for various voxel sizes. </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-2">Diffusion Process Visualization</h2>
+        <hr>
+        <div class="column has-text-centered">
+          <img src="assets/vis_chair.png" width="960" height="640"/>
+          <p>Qualitative visualizations of diffusion process for chair generation. The generation results from random noise to the final 3D shapes are shown in top-to-bottom order in each column.</p>
+        </div>
+        <div class="column has-text-centered">
+          <img src="assets/vis_airplane.png" width="960" height="640"/>
+          <p>Qualitative visualizations of diffusion process for airplane generation. </p>
+        </div>
+        <div class="column has-text-centered">
+          <img src="assets/vis_car.png" width="960" height="640"/>
+          <p>Qualitative visualizations of diffusion process for car generation. </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{mo2023fastdit3d,
+    title = {Fast Training of Diffusion Transformer with Extreme Masking for 3D Point Clouds Generation},
+    author = {Shentong Mo and Enze Xie and Yue Wu and Junsong Chen and Matthias Nießner and Zhenguo Li},
+    year = {2023},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="assets/paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://fastdit-3d.github.io" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            Thanks to the website template from <a
+            href="https://nerfies.github.io/">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
